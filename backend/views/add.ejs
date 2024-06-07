@@ -1,0 +1,63 @@
+<!-- views/addStudent.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Student</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      padding: 20px;
+    }
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    form div {
+      margin-bottom: 15px;
+    }
+    label {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1 class="mb-4">Add Student</h1>
+  <form action="/students/add" method="POST">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" class="form-control" id="name" name="name" required>
+    </div>
+    <div class="form-group">
+      <label for="college">College:</label>
+      <input type="text" class="form-control" id="college" name="college" required>
+    </div>
+    <div class="form-group">
+      <label for="status">Status:</label>
+      <select class="form-control" id="status" name="status">
+        <option value="placed">Placed</option>
+        <option value="not_placed">Not Placed</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="batch">Batch:</label>
+      <input type="text" class="form-control" id="batch" name="batch" required>
+    </div>
+    <div class="form-group">
+      <label for="dsaFinalScore">DSA Final Score:</label>
+      <input type="number" class="form-control" id="dsaFinalScore" name="dsaFinalScore">
+    </div>
+    <div class="form-group">
+      <label for="webDFinalScore">WebD Final Score:</label>
+      <input type="number" class="form-control" id="webDFinalScore" name="webDFinalScore">
+    </div>
+    <div class="form-group">
+      <label for="reactFinalScore">React Final Score:</label>
+      <input type="number" class="form-control" id="reactFinalScore" name="reactFinalScore">
+    </div>
+    <button type="submit" class="btn btn-primary">Add Student</button>
+  </form>
+</body>
+</html>

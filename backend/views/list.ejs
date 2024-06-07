@@ -1,0 +1,68 @@
+<!-- views/studentsList.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Students List</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      padding: 20px;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    tr:hover {
+      background-color: #f5f5f5;
+    }
+    a {
+      display: block;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Students List</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>College</th>
+          <th>Status</th>
+          <th>DSA Score</th>
+          <th>WebD Score</th>
+          <th>React Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% students.forEach(student => { %>
+          <tr>
+            <td><%= student.name %></td>
+            <td><%= student.college %></td>
+            <td><%= student.status %></td>
+            <td><%= student.scores.dsaFinalScore %></td>
+            <td><%= student.scores.webDFinalScore %></td>
+            <td><%= student.scores.reactFinalScore %></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+    <a href="/students/add" class="btn btn-primary">Add Student</a>
+  </div>
+</body>
+</html>

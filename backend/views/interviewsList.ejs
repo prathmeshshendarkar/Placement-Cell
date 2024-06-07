@@ -1,0 +1,62 @@
+<!-- views/interviewsList.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>List of Interviews</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      padding: 20px;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    .interview-details {
+      border: 1px solid #ccc;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .interview-details h2 {
+      margin-bottom: 10px;
+    }
+    .interview-details p {
+      margin-bottom: 5px;
+    }
+    .assign-student-form {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>List of Interviews</h1>
+    <!-- Add a button to navigate to the form for creating a new interview -->
+    <a href="/interviews/new" class="btn btn-primary">Create New Interview</a>
+
+    <hr>
+    <!-- Iterate over each interview in the array -->
+    <% interviews.forEach(interview => { %>
+      <div class="interview-details">
+        <h2>Interview Details</h2>
+        <p>Company: <%= interview.company %></p>
+        <p>Date: <%= interview.date %></p>
+        <p>Batch: <%= interview.batch %></p>
+        <a href="/interviews/<%= interview._id %>/students" class="btn btn-primary">View Students</a>
+        <form action="/interviews/assign" method="POST" class="assign-student-form">
+          <input type="hidden" name="interviewId" value="<%= interview._id %>">
+          <div class="form-group">
+            <label for="studentName">Assign Student:</label>
+            <input type="text" id="studentName" name="studentName" class="form-control">
+          </div>
+          <button type="submit" class="btn btn-success">Assign Student</button>
+        </form>
+      </div>
+    <% }); %>
+    
+    
+  </div>
+</body>
+</html>

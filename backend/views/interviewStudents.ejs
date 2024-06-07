@@ -1,0 +1,60 @@
+<!-- views/interviewStudents.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interview Students</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      padding: 20px;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    .student-card {
+      border: 1px solid #ccc;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .student-card p {
+      margin-bottom: 10px;
+    }
+    .update-result-form {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Students for Interview: <%= interview.company %> - <%= interview.date %></h1>
+    <ul>
+      <% if (interview.students.length > 0) { %>
+        <% interview.students.forEach(student => { %>
+          <li class="student-card">
+            <p><strong>Name:</strong> <%= student.name %></p>
+            <p><strong>Status:</strong> <%= student.status %></p>
+            <form action="/interviews/<%= interview._id %>/students/<%= student._id %>/update-result" method="POST" class="update-result-form">
+              <div class="form-group">
+                <label for="result">Result:</label>
+                <select name="result" id="result" class="form-control">
+                  <option value="PASS" <%= student.result === 'PASS' ? 'selected' : '' %>>PASS</option>
+                  <option value="FAIL" <%= student.result === 'FAIL' ? 'selected' : '' %>>FAIL</option>
+                  <option value="On Hold" <%= student.result === 'On Hold' ? 'selected' : '' %>>On Hold</option>
+                  <option value="Didn’t Attempt" <%= student.result === 'Didn’t Attempt' ? 'selected' : '' %>>Didn’t Attempt</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary">Update Result</button>
+            </form>
+          </li>
+        <% }); %>
+      <% } else { %>
+        <p>No students assigned to this interview.</p>
+      <% } %>
+    </ul>
+    <a href="/interviews" class="btn btn-secondary">Back to Interviews</a>
+  </div>
+</body>
+</html>
